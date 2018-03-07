@@ -4,7 +4,6 @@ MAINTAINER <blgulla@ncsu.edu>
 
 
 RUN apt-get update; apt-get install -y git build-essential python-dev python-smbus apt-utils python-setuptools 
-RUN apt-get install -y python-pip; 
 RUN git clone https://github.com/adafruit/Adafruit_Python_BMP.git /data/adafruit ; cd /data/adafruit; python setup.py install
 RUN pip install Flask flask-cors
 
