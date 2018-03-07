@@ -1,12 +1,20 @@
 #!/usr/bin/python
 from flask import Flask, jsonify
 from flask.ext.cors import CORS
+import ds18b20
 import Adafruit_BMP.BMP085 as BMP085
 import json
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-sensor = BMP085.BMP085()
+
+use_bmp = True
+
+try:
+    sensor = BMP085.BMP085()
+except:
+    print "[DISABLED] BMP Module"
+    use_bmp = False
 
 
 @app.route('/rest/api/v1.0/temperature', methods=['GET'])
@@ -15,15 +23,27 @@ def get_tasks():
     temp = (temp * 9/5 +32)
     return str(temp)
 
+# ds18b20
+@app.route('/ds', methods=['GET'])
+def get_tasks2():
+    sensors = dict()
+    sensors['ds18b20'] = ds18b20.get_readings()
+    return json.dumps(sensors, ensure_ascii=False)
+
 @app.route('/stats', methods=['GET'])
 def debug():
     sensors = dict()
+    # ds18b20 sensor
+    sensors = dict()
+    if ds18b20.get_sensor_ids() > 0:
+        sensors['ds18b20'] = ds18b20.get_readings()
+    #bmp sensor
     bmp180 = dict()
-    bmp180['temperature'] = sensor.read_temperature()
-    bmp180['temperatureF'] = (sensor.read_temperature() * 9/5 +32)
-    bmp180['pressure'] = sensor.read_pressure()
-    bmp180['altitude'] = sensor.read_altitude()
-#    return json.dumps(bmp180, ensure_ascii=False)
+    if use_bmp:
+        bmp180['temperature'] = sensor.read_temperature()
+        bmp180['temperatureF'] = (sensor.read_temperature() * 9/5 +32)
+        bmp180['pressure'] = sensor.read_pressure()
+        bmp180['altitude'] = sensor.read_altitude()
     sensors['bmp180'] = bmp180
     return json.dumps(sensors, ensure_ascii=False)
 
@@ -39,5 +59,5 @@ def get_val2():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0', port=8888)
+    app.run(host='0.0.0.0', port=8800)
 
