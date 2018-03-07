@@ -8,7 +8,12 @@ The container binds to a provided port and outputs the sensor data in easy to in
 🍺  pi@bar[~] > docker run --rm -d --privileged -p 8800:8800 -t bgulla/sensor2json
 🍺  pi@bar[~] > curl http://bar.local:8800/stats | jq "."
 {
-  "bmp180": {},
+  "bmp180": { 
+    "temperatureF": 69.25999999999999,
+    "pressure": 100665,
+    "altitude": 54.34029119011573,
+    "temperature": 20.7
+  },
   "ds18b20": {
     "28-00000483ba1a": 67.4366,
     "28-00000471c98d": 39.5366
