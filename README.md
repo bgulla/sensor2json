@@ -5,6 +5,7 @@ Exposes GPIO sensor data via JSON REST endpoint. This repo builds an ARM compati
 The container binds to a provided port and outputs the sensor data in easy to ingest JSON blobs. 
 
 ```bash
+🍺  pi@bar[~] > docker run --rm -d --privileged -p 8800:8800 -t bgulla/sensor2json
 🍺  pi@bar[~] > curl http://bar.local:8800/stats | jq "."
 {
   "bmp180": {},
