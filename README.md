@@ -12,21 +12,22 @@ The container binds to a provided port and outputs the sensor data in easy to in
     "28-00000483ba1a": 67.4366,
     "28-00000471c98d": 39.5366
   }
-}```
+}
+```
 
 ## Requirements
 ###DS18B20 Temperature Sensor
 [Adafruit has an awesome guide](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/ds18b20) but in short do the following commands:
 
+```bash
+echo 'dtoverlay=w1-gpio' >> /boot/config.txt
 
-`echo 'dtoverlay=w1-gpio' >> /boot/config.txt`
+echo 'w1-gpio' >> /etc/modules
 
-`echo 'w1-gpio' >> /etc/modules`
+echo 'w1-therm' >> /etc/modules
 
-`echo 'w1-therm' >> /etc/modules`
-
-`reboot`
-
+reboot
+```
 ###BMP180 Temperature/Barometric/Altitude Sensor
 `echo "dtparam=i2c1=on" >> /boot/config.txt`
 
