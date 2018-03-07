@@ -43,8 +43,7 @@ reboot
 Building the image is straight forward:
 
 * Git clone this repo
-* `docker build -t hypriot-ds18b20`
-* or `docker-compose up`
+* `docker build -t sensor2json`
 
 ## Aliases
 Sensor IDs don't tell a story, but aliases do. All DS18b20 sensors have an id in the format `28-<sensor_id>`. If you attach environment variables prepended with 'sensor_', the webserver will actually replace the sensor id with a string value.
