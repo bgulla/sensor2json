@@ -16,7 +16,7 @@ The container binds to a provided port and outputs the sensor data in easy to in
 ```
 
 ## Requirements
-###DS18B20 Temperature Sensor
+### DS18B20 Temperature Sensor
 [Adafruit has an awesome guide](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/ds18b20) but in short do the following commands:
 
 ```bash
@@ -25,7 +25,7 @@ echo 'w1-gpio' >> /etc/modules
 echo 'w1-therm' >> /etc/modules
 reboot
 ```
-###BMP180 Temperature/Barometric/Altitude Sensor
+### BMP180 Temperature/Barometric/Altitude Sensor
 ```bash
 echo "dtparam=i2c1=on" >> /boot/config.txt
 echo "dtparam=i2c_arm=on">> /boot/config.txt
