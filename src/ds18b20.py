@@ -69,7 +69,7 @@ def get_readings():
         if sensor is not None:
             temp = read_temp(sensor)
             sensor_id = getAliasForSensor(sensor)
-            sensors_values[sensor_id] = str(temp)
+            sensors_values[sensor_id] = temp
     return sensors_values
 
 def get_reading(sensor):
@@ -78,7 +78,7 @@ def get_reading(sensor):
         if sensor is not None:
             temp = read_temp(sensor)
             sensor_id = getAliasForSensor(sensor)
-            sensors_values[sensor_id] = str(temp)
+            sensors_values[sensor_id] = temp
     return sensors_values
 	
 
