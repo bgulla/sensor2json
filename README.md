@@ -21,21 +21,17 @@ The container binds to a provided port and outputs the sensor data in easy to in
 
 ```bash
 echo 'dtoverlay=w1-gpio' >> /boot/config.txt
-
 echo 'w1-gpio' >> /etc/modules
-
 echo 'w1-therm' >> /etc/modules
-
 reboot
 ```
 ###BMP180 Temperature/Barometric/Altitude Sensor
-`echo "dtparam=i2c1=on" >> /boot/config.txt`
-
-`echo "dtparam=i2c_arm=on">> /boot/config.txt`
-
-`echo "i2c-dev" >> /etc/modules`
-
-`reboot`
+```bash
+echo "dtparam=i2c1=on" >> /boot/config.txt
+echo "dtparam=i2c_arm=on">> /boot/config.txt
+echo "i2c-dev" >> /etc/modules
+reboot
+```
 
 ## How to build
 Building the image is straight forward:
