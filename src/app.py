@@ -42,13 +42,13 @@ def debug():
         sensors['ds18b20'] = ds18b20.get_readings()
     #bmp sensor
     bmp180 = dict()
-    if use_bmp:
+    if False:
         bmp180['temperature'] = sensor.read_temperature()
         bmp180['temperatureF'] = (sensor.read_temperature() * 9/5 +32)
         bmp180['pressure'] = sensor.read_pressure()
         bmp180['altitude'] = sensor.read_altitude()
     sensors['bmp180'] = bmp180
-    sensors['bme280'] = bme280.BME280.get_JSON()
+    sensors['bme280'] = bme280.BME280().get_JSON()
     return json.dumps(sensors, ensure_ascii=False)
 
 @app.route('/temperature', methods=['GET'])
