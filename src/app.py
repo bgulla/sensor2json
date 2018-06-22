@@ -2,7 +2,7 @@
 from flask import Flask, jsonify
 from flask.ext.cors import CORS
 import ds18b20
-import Adafruit_BMP.BMP085 as BMP085
+
 import json
 
 app = Flask(__name__)
