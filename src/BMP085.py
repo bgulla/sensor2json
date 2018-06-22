@@ -62,11 +62,14 @@ class BMP085():
         output = dict()
         sensor_name = 'BMP_085'
         output[sensor_name] = dict()
-        output[sensor_name]['temperature'] = self.get_temperature("F")
-        output[sensor_name]['temperatureC'] = self.get_temperature("C")
-        output[sensor_name]['altitude'] = self.get_altitude()
-        output[sensor_name]['pressure'] = self.get_pressure()
-        output[sensor_name]['humidity'] = self.get_humidity()
+        try:
+            output[sensor_name]['temperature'] = self.get_temperature("F")
+            output[sensor_name]['temperatureC'] = self.get_temperature("C")
+            output[sensor_name]['altitude'] = self.get_altitude()
+            output[sensor_name]['pressure'] = self.get_pressure()
+            output[sensor_name]['humidity'] = self.get_humidity()
+        except:
+            return json.dumps(output)
         return json.dumps(output)
 
 

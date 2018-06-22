@@ -163,7 +163,7 @@ class BME280():
     is_active = True
 
     def __int__(self):
-
+        return
 
     def get_temperature(self, format="F"):
         """
@@ -207,11 +207,14 @@ class BME280():
         output = dict()
         sensor_name = 'BMP_085'
         output[sensor_name] = dict()
-        output[sensor_name]['temperature'] = self.get_temperature("F")
-        output[sensor_name]['temperatureC'] = self.get_temperature("C")
-        output[sensor_name]['altitude'] = self.get_altitude()
-        output[sensor_name]['pressure'] = self.get_pressure()
-        output[sensor_name]['humidity'] = self.get_humidity()
+        try:
+            output[sensor_name]['temperature'] = self.get_temperature("F")
+            output[sensor_name]['temperatureC'] = self.get_temperature("C")
+            output[sensor_name]['altitude'] = self.get_altitude()
+            output[sensor_name]['pressure'] = self.get_pressure()
+            output[sensor_name]['humidity'] = self.get_humidity()
+        except:
+            return json.dumps(output)
         return json.dumps(output)
 
 def main():
@@ -222,5 +225,6 @@ def main():
     print "[Altitude]", sensor.get_altitude()
     print "[Pressure]", sensor.get_pressure()
     print "[Humidity]", sensor.get_humidity()
+    print sensor.get_JSON()
 if __name__=="__main__":
    main()

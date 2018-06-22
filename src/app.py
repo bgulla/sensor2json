@@ -2,6 +2,8 @@
 from flask import Flask, jsonify
 from flask.ext.cors import CORS
 import ds18b20
+import BMP085
+import bme280
 
 import json
 
@@ -45,6 +47,7 @@ def debug():
         bmp180['pressure'] = sensor.read_pressure()
         bmp180['altitude'] = sensor.read_altitude()
     sensors['bmp180'] = bmp180
+    sensors['bme280'] = bme280.BME280.get_JSON()
     return json.dumps(sensors, ensure_ascii=False)
 
 @app.route('/temperature', methods=['GET'])
