@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from flask import Flask, jsonify
-from flask.ext.cors import CORS
+#from flask.ext.cors import CORS
+from flask_cors import CORS
 import ds18b20
 import BMP085
 import bme280
