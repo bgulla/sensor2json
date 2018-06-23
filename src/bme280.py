@@ -205,7 +205,7 @@ class BME280():
         :return:
         """
         output = dict()
-        sensor_name = 'BMP_085'
+        sensor_name = 'bmp085'
         output[sensor_name] = dict()
         try:
             output[sensor_name]['temperature'] = self.get_temperature("F")
@@ -214,8 +214,26 @@ class BME280():
             output[sensor_name]['pressure'] = self.get_pressure()
             output[sensor_name]['humidity'] = self.get_humidity()
         except:
-            return json.dumps(output)
-        return json.dumps(output)
+            return json.dumps(output, ensure_ascii=False)
+        return json.dumps(output, ensure_ascii=False)
+
+    def get(self):
+        """
+
+        :return:
+        """
+        output = dict()
+        sensor_name = 'bmp085'
+        output[sensor_name] = dict()
+        try:
+            output[sensor_name]['temperature'] = self.get_temperature("F")
+            output[sensor_name]['temperatureC'] = self.get_temperature("C")
+            output[sensor_name]['altitude'] = self.get_altitude()
+            output[sensor_name]['pressure'] = self.get_pressure()
+            output[sensor_name]['humidity'] = self.get_humidity()
+        except:
+            return outut
+        return output
 
 def main():
     sensor = BME280()

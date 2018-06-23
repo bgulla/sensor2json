@@ -47,8 +47,8 @@ def debug():
         bmp180['temperatureF'] = (sensor.read_temperature() * 9/5 +32)
         bmp180['pressure'] = sensor.read_pressure()
         bmp180['altitude'] = sensor.read_altitude()
-    sensors['bmp180'] = bmp180
-    sensors['bme280'] = bme280.BME280().get_JSON()
+#    sensors['bmp180'] = bmp180
+    sensors.update(bme280.BME280().get())
     return json.dumps(sensors, ensure_ascii=False)
 
 @app.route('/temperature', methods=['GET'])
