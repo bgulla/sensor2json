@@ -8,7 +8,7 @@ RUN git clone https://github.com/adafruit/Adafruit_Python_GPIO.git /data/adafrui
 #RUN git clone https://github.com/adafruit/Adafruit_Python_BME280.git /data/adafruit_BME ; cd /data/adafruit_BME; python setup.py install
 
 COPY ./requirements.txt /
-RUN pip isntall -y /requirements.txt
+RUN pip install -y /requirements.txt
 
 COPY ./src /src
 CMD ["python","/src/app.py"]

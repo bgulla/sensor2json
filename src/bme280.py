@@ -232,7 +232,7 @@ class BME280():
             output[sensor_name]['pressure'] = self.get_pressure()
             output[sensor_name]['humidity'] = self.get_humidity()
         except:
-            return outut
+            return output
         return output
 
 def main():
