@@ -9,16 +9,18 @@ class BMP085():
 
     is_active = True
 
+    try:
+        sensor = BMP085sensor.BMP085()
+    except:
+        print "[DISABLED] BMP Module"
+        is_active = False
+
     def __int__(self):
         """
 
         :return:
         """
-        try:
-            self.sensor = BMP085.BMP085()
-        except:
-            print "[DISABLED] BMP Module"
-            self.is_active = False
+        return
 
     def get_temperature(self, format="F"):
         """

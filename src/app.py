@@ -43,10 +43,10 @@ def debug():
     #bmp sensor
     bmp180 = dict()
     if use_bmp:
-        bmp180['temperature'] = sensor.read_temperature()
-        bmp180['temperatureF'] = (sensor.read_temperature() * 9/5 +32)
-        bmp180['pressure'] = sensor.read_pressure()
-        bmp180['altitude'] = sensor.read_altitude()
+        bmp180['temperature'] = sensor.get_temperature("C")
+        bmp180['temperatureF'] = (sensor.get_temperature("F"))
+        bmp180['pressure'] = sensor.get_pressure()
+        bmp180['altitude'] = sensor.get_altitude()
     sensors['bmp180'] = bmp180
     sensors.update(bme280.BME280().get())
     return json.dumps(sensors, ensure_ascii=False)
