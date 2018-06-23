@@ -42,11 +42,13 @@ def debug():
         sensors['ds18b20'] = ds18b20.get_readings()
     #bmp sensor
     bmp180 = dict()
-    if use_bmp:
+    try:
         bmp180['temperature'] = sensor.get_temperature("C")
         bmp180['temperatureF'] = (sensor.get_temperature("F"))
         bmp180['pressure'] = sensor.get_pressure()
         bmp180['altitude'] = sensor.get_altitude()
+    except:
+        print ""
     sensors['bmp180'] = bmp180
     sensors.update(bme280.BME280().get())
     return json.dumps(sensors, ensure_ascii=False)
