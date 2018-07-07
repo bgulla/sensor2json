@@ -1,4 +1,5 @@
 # sensor2json
+[![Build Status](https://travis-ci.org/bgulla/sensor2json.svg?branch=master)](https://travis-ci.org/bgulla/sensor2json)
 Exposes GPIO sensor data via JSON REST endpoint. This repo builds an ARM compatible Docker image that will output the values of [DS18B20](https://www.adafruit.com/product/381) or [BMP180](https://www.adafruit.com/product/2652) temperature/altitude/barometric pressure sensors connected to a Raspberry Pi. This library can be extended to serve up any GPIO sensors. Pull Requests are welcome. Built using Python Flask.
 
 ## GPIO Sensors are hard, use REST!
