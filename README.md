@@ -64,7 +64,7 @@ pi@bar[~] > curl http://bar.local:8800/stats | jq "."
 
 ## Telegraf/InfluxDB (+Grafana) Plugin
 ![Grafana is awesome](https://github.com/bgulla/sensor2json/raw/master/img/grafana.png?raw=true)
-Graphs are awesome, and I am am a huge fan of InfluxDB + Grafana. My shipping agent of choice is [Telegraf](https://github.com/influxdata/telegraf). Telegraf will parse the GET request to your rest endpoint and automagically send it to InfluxDB. 
+Graphs are awesome! I am am a huge fan of InfluxDB + Grafana. My shipping agent of choice is [Telegraf](https://github.com/influxdata/telegraf). Telegraf will parse the GET request to your rest endpoint and automagically send it to InfluxDB. 
 
 Add the folllowing to your /etc/telegraf/telegraf.conf file:
 
