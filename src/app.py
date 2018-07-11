@@ -35,7 +35,6 @@ def get_tasks2():
 
 @app.route('/stats', methods=['GET'])
 def debug():
-    sensors = dict()
     # ds18b20 sensor
     sensors = dict()
     if ds18b20.get_sensor_ids() > 0:
@@ -55,9 +54,11 @@ def debug():
 
 @app.route('/temperature', methods=['GET'])
 def get_tasks3():
-    temp = sensor.read_temperature()
-    temp = (temp * 9/5 +32)
-    return str(temp)
+    try:
+        return str(temp_json['bmp085']['temperature'])
+    except:
+        return "foo" #str(sensor.get_temperature("F"))
+    return str("fail")
 
 @app.route('/rest/api/v1.0/pressure', methods=['GET'])
 def get_val2():
