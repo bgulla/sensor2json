@@ -9,6 +9,7 @@ import socket
 from contextlib import closing
 from werkzeug.contrib.fixers import ProxyFix
 from sensors.sensehatsensor import SensehatSensor
+from sensors.ds18b20 import ds18b20
 import uuid
 
 
@@ -40,7 +41,8 @@ class Todo(Resource):
         '''Fetch a given resource'''
         #abort_if_todo_doesnt_exist(zipcode_id) # Replace this with syntax checker
         #return zipcodes.matching(str(zipcode_id))
-        s = SensehatSensor()
+        #s = SensehatSensor()
+        s = ds18b20()
         sensors = dict()
         sensors['sensehat'] = s.get()
         #return json.dumps(s.get(), ensure_ascii=True,indent=4,sort_keys=True)

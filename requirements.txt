@@ -2,3 +2,6 @@ Flask
 flask-cors
 PTable
 pytemperature
+jsonify
+flask_restplus
+sense-hat

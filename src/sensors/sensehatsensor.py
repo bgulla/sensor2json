@@ -50,7 +50,7 @@ class SensehatSensor():
 		return s
 	
 	def get_json(self):
-		return jsonify(self.get_dict())
+		return jsonify( self.get_dict() )
 
 def main():
 	sensor = SensehatSensor()
