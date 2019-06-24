@@ -8,13 +8,16 @@ import os
 import socket
 from contextlib import closing
 from werkzeug.contrib.fixers import ProxyFix
+from sensors.sensehatsensor import SensehatSensor
+import uuid
+
 
 app = Flask(__name__)
-app.secret_key = '027f4073-a5ae-4ec6-a7e2-d7d0435a5867'
+app.secret_key = uuid.uuid4()
 
 # Fix the swagger http proxy bug
 app.wsgi_app = ProxyFix(app.wsgi_app)
-api_v1 = Blueprint('api', __name__, url_prefix='/api/sensors')
+api_v1 = Blueprint('api', __name__, url_prefix='/api')
 
 api = Api(api_v1, version='1.0', title='sensor2json',
     description='A Python3-based sensor tool for the Raspberry-Pi.',
@@ -29,20 +32,20 @@ def abort_if_todo_doesnt_exist(todo_id):
     if False:
         api.abort(404, "Todo {} doesn't exist".format(todo_id))
 
-@ns.route('/<string:zipcode_id>')
+@ns.route('/sensors')
 class Todo(Resource):
     '''Show a single todo item and lets you delete them'''
-    @api.doc(description='US Zip-codes only in Integer format')
-    def get(self, zipcode_id):
+    @api.doc(description='Returns all the available sensor data')
+    def get(self):
         '''Fetch a given resource'''
-        abort_if_todo_doesnt_exist(zipcode_id) # Replace this with syntax checker
-        return zipcodes.matching(str(zipcode_id))
-
-
-@app.route('/status', methods=['GET', 'POST']) #this is the meat
-def healthcheck():
-    return "HEALTHY"
-
+        #abort_if_todo_doesnt_exist(zipcode_id) # Replace this with syntax checker
+        #return zipcodes.matching(str(zipcode_id))
+        s = SensehatSensor()
+        sensors = dict()
+        sensors['sensehat'] = s.get()
+        #return json.dumps(s.get(), ensure_ascii=True,indent=4,sort_keys=True)
+        return jsonify(sensors)
+        
 @app.before_first_request
 def setup_logging():
     if not app.debug:
@@ -59,8 +62,4 @@ if __name__ == '__main__':
 
     # Fix the getuid bug
     os.environ["USER"] = "1001"
-
-    if True:
-        app.run(port=FLASK_PORT, debug=True, host="0.0.0.0")
-    else:
-        app.run(port=8443, ssl_context=(CERT_FILE, KEY_FILE), debug=True, host="0.0.0.0")
+    app.run(port=5000, debug=True, host="0.0.0.0")
